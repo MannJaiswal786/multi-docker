@@ -13,3 +13,11 @@ after_success:
   - docker build -t mannj99/multi-nginx ./nginx
   - docker build -t mannj99/multi-server ./server
   - docker build -t mannj99/multi-worker ./worker
+  # Log In to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Take these production ready images and push them to docker hub
+  - docker push mannj99/multi-client
+  - docker push mannj99/multi-nginx
+  - docker push mannj99/multi-server
+  - docker push mannj99/multi-worker
